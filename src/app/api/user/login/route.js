@@ -16,8 +16,7 @@ export async function POST(request) {
                     email: reqBody.email,
                 }
                 const token = await new SignJWT(payload).setProtectedHeader({ alg: "HS256" }).setExpirationTime("1d").sign(secretKey);
-                console.log(token)
-                return NextResponse.json({ message: "ログイン成功" });
+                return NextResponse.json({ message: "ログイン成功", token: token });
             } else {
                 return NextResponse.json({ message: "ログイン失敗：パスワードが間違っています" });
             }
